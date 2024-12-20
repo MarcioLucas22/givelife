@@ -1,0 +1,190 @@
+/* Reseta margens e define o layout */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos Gerais */
+body, html {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Cabeçalho */
+.navbar {
+    background-color: #004f4f;
+    padding: 10px 50px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1000px;
+    margin: 10px auto;
+}
+
+.logo img {
+    width: 50px;
+    height: auto;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 15px;
+    border-radius: 10px;
+    background-color: #004f4f;
+    transition: background-color 0.3s ease;
+}
+
+.home-link {
+    background-color: #d32f2f;
+}
+
+.home-link:hover {
+    background-color: #ff3b30;
+}
+
+/* Ícone Centralizado */
+.icon-section {
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.icon {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon img {
+    width: 100px;
+    height: 100px;
+}
+
+/* Conteúdo Principal */
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    background-color: white;
+    padding: 40px;
+}
+
+/* Formulário de Cadastro */
+.registration-form {
+    background-color: #fff;
+    text-align: left;
+}
+
+.registration-form h2 {
+    color: #004f4f;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 5px;
+    display: block;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    appearance: none;
+}
+
+input:focus, select:focus {
+    border-color: #007b7b;
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 123, 123, 0.3);
+    transform: scale(1.02);
+}
+
+/* Layout do formulário lado a lado e responsivo */
+.form-field {
+    width: 48%;
+    margin-bottom: 15px;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4%;
+}
+
+@media (max-width: 768px) {
+    .form-field {
+        width: 100%;
+    }
+}
+
+/* Botão */
+.btn-primary {
+    background-color: #007b7b;
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #005f5f;
+    transform: scale(1.05);
+}
+
+/* Mensagem de sucesso */
+.success-message {
+    color: #28a745;
+    font-size: 16px;
+    margin-top: 15px;
+}
+
+/* Rodapé */
+footer {
+    background-color: #004f4f;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: auto;
+    border-top: 3px solid #f4f0f0;
+}
+
+footer p {
+    font-size: 14px;
+    color: #ccc;
+}

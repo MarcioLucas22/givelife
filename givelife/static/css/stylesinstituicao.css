@@ -1,0 +1,156 @@
+/* Estilos Gerais */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+
+/* Estrutura da Página */
+.container {
+    display: flex;
+    max-width: 1000px;
+    margin: 40px auto;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    overflow: hidden;
+    background-color: white;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.6s ease forwards;
+}
+
+/* Efeito de fade-in */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Seção de Boas-vindas */
+.welcome-section {
+    flex: 1;
+    background-color: #d32f2f;
+    color: white;
+    padding: 40px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.logo {
+    width: 150px;
+    height: auto;
+    margin-bottom: 20px;
+    margin-left: 100px;
+}
+
+.welcome-section h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.welcome-section p {
+    font-size: 16px;
+}
+
+/* Seção do Formulário */
+.form-section {
+    flex: 1.5;
+    padding: 40px;
+    background-color: white;
+}
+
+.form-section h2 {
+    color: #004f4f;
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.form-section p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+/* Estilos do Formulário */
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* Efeito de foco nos inputs */
+input:focus {
+    border-color: #007b7b;
+    box-shadow: 0 0 8px rgba(0, 123, 123, 0.2);
+    transform: scale(1.02);
+    outline: none;
+}
+
+/* Estilos do botão de cadastro */
+.btn-primary {
+    background-color: #007b7b;
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #005f5f;
+    transform: scale(1.05);
+}
+footer {
+    background-color: #004f4f;
+    color: white;
+    padding: 30px 0;
+    text-align: center;
+}
+
+footer a {
+    color: white;
+    margin: 0 10px; /* Menor espaçamento */
+    font-size: 16px; /* Fonte um pouco menor */
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+footer p {
+    margin-top: 76px;
+    font-size: 14px;
+    color: #ccc;
+}
+
+/* Mensagens de erro */
+.error-message {
+    font-size: 14px;
+    color: red;
+    margin-top: 5px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    .form-row {
+        flex-direction: column;
+    }
+}

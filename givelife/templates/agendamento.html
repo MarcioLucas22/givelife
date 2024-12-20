@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento de Doação - Doador</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <img src="{% static 'images/Logo GiveLife.png' %}" alt="Logo">
+            </div>
+            <nav class="nav-links">
+                <a href="{% url 'doador' %}" class="nav-link home-link">Home</a>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <section class="icon-section">
+            <div class="icon">
+                <img src="{% static 'images/user-icon.png' %}" alt="Ícone do Usuário">
+            </div>
+        </section>
+        <div class="container">
+            <section class="registration-form">
+                <h2>Agende sua Doação</h2>
+                <form action="{% url 'agendamento' %}" method="post" id="donation-form">
+                    {% csrf_token %}
+                    <div class="form-field">
+                        <select id="centroDoacao" name="centroDoacao" required>
+                            <option value="" disabled selected>Selecione o local de doação</option>
+                            {% for hospital in hospitals %}
+                                <option value="{{ hospital.id }}">{{ hospital.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <input type="date" id="data" name="data" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Agendar</button>
+                    {% if error %}
+                        <p style="color: red;">{{ error }}</p>
+                    {% endif %}
+                </form>
+                <p id="success-message" class="success-message" style="display: none;">Agendamento realizado com sucesso!</p>
+            </section>
+
+            <br>
+            <h2 class="text-center">Lista de Agendamentos</h2>
+            <br>
+                <div class="row">
+                    {% for schedule in scheduling %}
+                        <div class="col-md-4">
+                            <div class="card shadow-sm border-0 rounded-lg">
+                                <div class="card-body">
+                                    <h3 class="card-title text-uppercase">{{ schedule.hospital_name|upper }}</h3>
+                                    <p class="card-text">Data do Agendamento: <strong>{{ schedule.date }}</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                    {% endfor %}
+                </div>                                   
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2024 Give Life - Todos os direitos reservados</p>
+    </footer>    
+</body>
+</html>

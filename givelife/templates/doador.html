@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Doadores</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/doador.css' %}">
+    <script src="{% static 'js/doador.js' %}"></script>    
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_MAPS_API_KEY }}" defer></script>
+    <script>
+        function initMap() {
+            const mapOptions = {
+                center: { lat: -19.912998, lng: -43.940933 },
+                zoom: 12,
+            };
+
+            const map = new google.maps.Map(document.getElementById('mapa-google'), mapOptions);
+            new google.maps.Marker({
+                position: { lat: -19.912998, lng: -43.940933 },
+                map,
+                title: "Hospital 1",
+            });
+            new google.maps.Marker({
+                position: { lat: -19.958421, lng: -43.946685 },
+                map,
+                title: "Hospital 2",
+            });
+            const userLocationCircle = new google.maps.Marker({
+                        position: { lat: -19.935726, lng: -43.934805},
+                        map: map,
+                        icon: {
+                            path: google.maps.SymbolPath.CIRCLE,
+                            scale: 10,
+                            fillColor: "#4285F4",
+                            fillOpacity: 1,
+                            strokeColor: "#FFFFFF",
+                            strokeWeight: 2,
+                        },
+                        title: "Sua localização",
+                    });
+        }
+
+        window.onload = initMap;
+    </script>
+    
+</head>
+<body>
+    <header>
+        <div class="barra-navegacao">
+            <div class="logo">
+                <img src="{% static 'images/Logo GiveLife.png' %}" alt="Logo">
+            </div>
+            <nav class="links-navegacao">
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="link-navegacao">Sair</button>
+                </form>  
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="informacoes-principais">
+            <h2>Bem-vindo, Doador!</h2>
+            <!-- MAPA DO GOOGLE MAPS -->
+            <div id="mapa-google" style="width: 100%; height: 400px;"></div>
+
+            <a href="{% url 'agendamento' %}" class="botao-primario"><button class="botao-primario">Agendar Doação</button></a>
+        </section>
+
+        <section class="secao-instituicoes">
+            <h3>Instituições de Doação</h3>
+            <div class="cartoes-instituicoes">
+                <div class="cartao-instituicao">
+                    <a href="https://instituicaoA.com"></a>
+                        <img src="{% static 'images/instituto3.jfif' %}" alt="Instituição A">                      
+                    </a>
+                    <h4>Instituição Ihene</h4>
+                    <p>Endereço: Rua A, 123</p>
+                    <p>Contato: (31) 1234-5678</p>
+                </div>
+                <div class="cartao-instituicao">
+                    <a href="https://instituicaoB.com" target="_blank">
+                        <img src="{% static 'images/instituto1.png' %}" alt="Instituição B">
+                    </a>
+                    <h4>Instituição Sabin</h4>
+                    <p>Endereço: Rua B, 456</p>
+                    <p>Contato: (31) 8765-4321</p>
+                </div>
+                <div class="cartao-instituicao">
+                    <a href="https://instituicaoC.com" target="_blank">
+                        <img src="{% static 'images/Instituto2.jpg' %}" alt="Instituição C">
+                    </a>
+                    <h4>Instituição Hermece</h4>
+                    <p>Endereço: Rua C, 789</p>
+                    <p>Contato: (31) 1122-3344</p>
+                </div>
+            </div>
+            <div class="botoes-informacoes">
+                <a href="{% url 'informacoes-doacao' %}"><button class="botao-secundario">Informações sobre Doação</button></a>
+            </div>
+        </section>
+
+        <section class="secao-depoimentos">
+            <h3>Depoimentos</h3>
+            <div class="depoimentos">
+                <div class="depoimento">
+                    <img src="{% static 'images/user1.png' %}" alt="Usuário 1">
+                    <p>"Nunca pensei que doar sangue seria tão acessível. Saber que posso ajudar alguém, até mesmo salvar uma vida, dá sentido a cada dia. Esse site é uma ponte entre a minha vontade de ajudar e aqueles que mais precisam."</p>
+                    <span>- Ana</span>
+                </div>
+                <div class="depoimento">
+                    <img src="{% static 'images/user2.png' %}" alt="Usuário 2">
+                    <p>"Doar foi uma experiência transformadora. Fiquei impressionado com a simplicidade do processo e como fui bem acolhido. Este site tornou tudo muito prático, e saber que pude fazer a diferença é uma satisfação imensa."</p>
+                    <span>- Carlos</span>
+                </div>
+                <div class="depoimento">
+                    <img src="{% static 'images/user3.jpeg' %}" alt="Usuário 3">
+                    <p>"Quando minha mãe precisou de uma transfusão, vi o quão importante é o papel dos doadores. Decidi retribuir. Este site não só facilita o agendamento, mas também me lembra do impacto que cada doação pode ter na vida de alguém."</p>
+                    <span>- Larissa</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Give Life - Todos os direitos reservados</p>
+    </footer>
+</body>
+</html>

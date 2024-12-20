@@ -1,0 +1,327 @@
+/* Reset de estilos para garantir consistência */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1b8af0;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+/* Estilos para o cabeçalho */
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, #034f84, #0275d8);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+
+.moon-icon {
+    cursor: pointer;
+    font-size: 2rem;
+    color: #f0ad4e;
+    transition: transform 0.3s ease-in-out;
+}
+body.dark-mode .moon-icon {
+    color: #f0ad4e;
+}
+
+.moon-icon:before {
+    content: "\263E"; /* Símbolo de lua crescente */
+    font-size: 2.5rem;
+    transition: transform 0.3s ease-in-out;
+    
+}
+body.dark-mode .moon-icon:before {
+    content: "\263C"; /* Símbolo de lua cheia */
+    transform: scale(1.2);
+}
+header .logo {
+    width: 50px;
+    transition: transform 0.3s ease-in-out;
+}
+
+header .logo:hover {
+    transform: scale(1.1);
+}
+
+header h1 {
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+}
+
+header nav a {
+    color: #ffffff;
+    margin-right: 1rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease-in-out;
+}
+
+header nav a:hover {
+    color: #f0ad4e;
+}
+
+.menu-icon {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.dashboard {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 2rem;
+}
+
+.chart, .box {
+    background-color: #ffffff;
+    color: #333;
+    padding: 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+.box:hover, .chart:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+}
+body.dark-mode {
+    background: linear-gradient(135deg, #121212, #1f1f1f);
+}
+body, .chart, .box {
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+body.dark-mode .chart, body.dark-mode .box {
+    background-color: #1f1f1f;
+    color: white;
+}
+.filters {
+    width: 250px;
+    padding: 1rem;
+    background-color: #0275d8;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.filters h2 {
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.year-selector, .months {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.year-selector button, .months button {
+    width: 45%;
+    padding: 8px;
+    border: none;
+    background-color: #d9534f;
+    color: #ffffff;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.year-selector button:hover, .months button:hover {
+    background-color: #c9302c;
+}
+
+.content {
+    flex: 1;
+    padding: 1.5rem;
+}
+
+.chart {
+    background-color: #ffffff;
+    color: #333333;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.info-boxes {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.box {
+    background-color: #ffffff;
+    color: #333333;
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1 1 calc(33% - 10px);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+#perfilDoadores .chart-donors {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 10px;
+}
+
+#donationsChart, #bloodTypeChart {
+    max-height: 300px;
+    transition: max-height 0.3s ease;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .dashboard {
+        flex-direction: column;
+        margin: 1rem;
+    }
+
+    .filters {
+        width: 100%;
+        margin-bottom: 1.5rem;
+    }
+
+    .filters button {
+        width: 48%;
+        font-size: 1rem;
+    }
+
+    .content {
+        width: 100%;
+    }
+
+    .chart, .box {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    #perfilDoadores .chart-donors {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.2rem;
+    }
+
+    .menu-icon {
+        font-size: 1.4rem;
+    }
+
+    .filters button {
+        width: 100%;
+    }
+}
+
+/* Tema Escuro */
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+body.dark-mode header {
+    background-color: #1f1f1f;
+}
+
+body.dark-mode .filters {
+    background-color: #2a2a2a;
+}
+
+body.dark-mode .chart, body.dark-mode .box {
+    background-color: #1f1f1f;
+    color: #ffffff;
+}
+
+body.dark-mode header .logo {
+    filter: invert(100%);
+}
+
+/* Efeitos de Transição para Tema Escuro */
+@keyframes themeTransition {
+    0% {
+        background-color: #ffffff;
+        color: #000;
+    }
+    100% {
+        background-color: #121212;
+        color: #ffffff;
+    }
+}
+
+body.dark-mode {
+    animation: themeTransition 0.5s ease;
+}
+
+/* Botão "Exportar Dados" */
+#export-button {
+    display: block;
+    width: 100%;
+    padding: 12px 24px;
+    margin: 20px 0;
+    background-color: #ff6b6b;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+/* Efeito de hover para o botão */
+#export-button:hover {
+    background-color: #ff4b4b;
+}
+
+/* Estilo para as caixas de informações */
+.info-boxes .box h2 {
+    font-size: 1.6em;
+    margin-bottom: 10px;
+}
+
+.info-boxes .box p,
+.info-boxes .box .chart-donors div {
+    font-size: 1.2em;
+}
+
+/* Animações suaves para as caixas e gráficos */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.chart, .box {
+    animation: fadeIn 0.8s ease-in-out;
+}

@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Give Life - Doação de Sangue</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Give Life</h1>
+            <p>Doe sangue, salve vidas. Agende sua doação com facilidade.</p>
+            <nav class="navbar">
+                <!-- <a href="{% url 'agendamento' %}" class="nav-link">Agendar Doação</a> -->
+                <a href="{% url 'login' %}" class="nav-link">Entrar</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="main-section">
+            <div class="container">
+                <div class="app-presentation">
+                    <img src="{% static 'images/Logo GiveLife.png' %}" alt="App no smartphone">
+                </div>
+                <div class="appointment-section">
+                    <h2>Agende sua Doação</h2>
+                    <p>Escolha um local e horário conveniente para realizar sua doação de sangue.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="buttons-section">
+            <div class="buttons-container">
+                <a href="{% url 'informacoes-doacao' %}" class="btn-secondary">Informações sobre Doação</button>
+                <a href="{% url 'passos' %}" class="btn-secondary">Passo a Passo para Doar</a>
+            </div>
+            <br>
+            <br>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Give Life - Todos os direitos reservados</p>
+    </footer>
+</body>
+</html>

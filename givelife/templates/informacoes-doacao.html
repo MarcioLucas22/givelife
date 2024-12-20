@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informações sobre Doações de Sangue</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/informacoes-doacao.css' %}">
+</head>
+<body>
+    <header class="cabecalho">
+        <div class="barra-navegacao">
+            <div class="logo">
+                <img src="{% static 'images/Logo GiveLife.png' %}" alt="Logo">
+            </div>
+            <nav class="links-navegacao">
+            </nav>
+        </div>
+        
+    </header>
+
+    <main class="conteudo">
+        <h1>Informações sobre Doações de Sangue</h1>
+        <p class="subtitulo">Saiba mais sobre como doar sangue e ajudar a salvar vidas.</p>
+        <section class="introducao">
+            <h2>Por que Doar Sangue?</h2>
+            <p>Doar sangue é um ato simples, rápido e que pode salvar vidas. Cada doação pode ajudar até três pessoas que precisam de transfusões em emergências, tratamentos médicos e cirurgias. Doadores regulares são fundamentais para manter os bancos de sangue abastecidos e garantir que todos tenham acesso ao sangue quando necessário.</p>
+        </section>
+
+        <section class="beneficios">
+            <h2>Benefícios e Critérios para Doar</h2>
+            <div class="cartoes-beneficios">
+                <div class="cartao">
+                    <h3>Benefícios para o Doador</h3>
+                    <p>A doação de sangue não só ajuda quem recebe, mas também traz satisfação pessoal para o doador, além de contribuir para o monitoramento da saúde através dos exames realizados antes de cada doação.</p>
+                </div>
+                <div class="cartao">
+                    <h3>Critérios para Doação</h3>
+                    <ul>
+                        <li>Ter entre 16 e 69 anos.</li>
+                        <li>Pesar mais de 50 kg.</li>
+                        <li>Estar em boas condições de saúde.</li>
+                        <li>Estar bem alimentado antes da doação.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="passo-a-passo">
+            <h2>Como Funciona o Processo de Doação</h2>
+            <ol>
+                <li><strong>Cadastro:</strong> O doador preenche um formulário com dados pessoais e de saúde.</li>
+                <li><strong>Triagem:</strong> Um profissional avalia se o doador está apto para doar naquele dia.</li>
+                <li><strong>Doação:</strong> A coleta de sangue é feita em um procedimento seguro e dura cerca de 10 minutos.</li>
+                <li><strong>Descanso:</strong> Após a doação, o doador descansa por alguns minutos e recebe um lanche.</li>
+            </ol>
+        </section>
+
+        <section class="dicas">
+            <h2>Dicas para o Dia da Doação</h2>
+            <ul>
+                <li>Durma bem na noite anterior.</li>
+                <li>Evite consumir alimentos gordurosos antes da doação.</li>
+                <li>Beba bastante água para manter-se hidratado.</li>
+                <li>Evite exercícios físicos intensos após a doação.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="rodape">
+        <p>&copy; 2024 Give Life - Todos os direitos reservados</p>
+    </footer>
+</body>
+</html>

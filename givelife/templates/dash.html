@@ -1,0 +1,257 @@
+{% load static %}
+{% load bootstrap5 %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Give Life - Doação de Sangue</title>
+    {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/dash.css' %}">
+</head>
+<body>
+    <header>
+        
+        <img src="{% static 'images/Logo GiveLife.png' %}" alt="Give Life Logo" class="logo">
+        <h1>Dashboard Doações de Sangue</h1>
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger btn-lg w-100">Sair</button>
+        </form>
+        <div class="moon-icon" id="moonIcon"></div>  
+    </header>
+
+    <section class="dashboard">
+
+        <div class="content">
+            <section class="chart">
+                <h2>Evolução Mensal de Doações de Sangue (L)</h2>
+                <canvas id="donationsChart"></canvas>
+            </section>
+            <section class="info-boxes">
+                <div class="box" id="perfilDoadores">
+                    <h2>Perfil Doadores</h2>
+                    <div class="chart-donors">
+                        <div>{{ male_gender_percentage }}% Homens</div>
+                        <div>{{ female_gender_percentage }}% Mulheres</div>
+                    </div>
+                </div>
+                <div class="box" id="totalRecebido">
+                    <h2>Total Recebido (L)</h2>
+                    <p>{{ total_amount }}L</p>
+                </div>
+                <div class="box" id="estoqueTotal">
+                    <h2>Estoque Total (L)</h2>
+                    <div class="stock-level">
+                        <p>{{ total_amount }}L</p>
+                        <p>META: 40 Litros</p>
+                    </div>
+                </div>
+                <div class="box" id="estoquePorTipo">
+                    <h2>Estoque por Tipo Sanguíneo (L)</h2>
+                    <canvas id="bloodTypeChart"></canvas>
+                </div>
+            </section>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- <script src="{% static 'js/dash.js' %}"></script> -->
+    <script>
+        const donationsByMonth = JSON.parse('{{ monthly_donations|safe }}');
+        const bloodStock = JSON.parse('{{ blood_stock|safe }}');
+        const aPositiveStock = bloodStock.find(stock => stock.blood_type === 'A+');
+        const aNegativeStock = bloodStock.find(stock => stock.blood_type === 'A-');
+        const bPositiveStock = bloodStock.find(stock => stock.blood_type === 'B+');
+        const bNegativeStock = bloodStock.find(stock => stock.blood_type === 'B-');
+        const abPositiveStock = bloodStock.find(stock => stock.blood_type === 'AB+');
+        const abNegativeStock = bloodStock.find(stock => stock.blood_type === 'AB-');
+        const oPositiveStock = bloodStock.find(stock => stock.blood_type === 'O+');
+        const oNegativeStock = bloodStock.find(stock => stock.blood_type === 'O-');
+
+        // Dados simulados para testes
+        const simulatedData = {
+            donorProfiles: {
+                male: 60,  // Percentual de doadores do sexo masculino
+                female: 40  // Percentual de doadores do sexo feminino
+            },
+            totalDonations: 120, // Total de doações em litros
+            stockLevels: {
+                current: 85, // Nível atual de estoque de sangue
+                target: 100  // Meta de estoque
+            },
+            bloodTypesStock: [
+                aPositiveStock?.['total_amount'] || 0,
+                aNegativeStock?.['total_amount'] || 0,
+                bPositiveStock?.['total_amount'] || 0,
+                bNegativeStock?.['total_amount'] || 0,
+                abPositiveStock?.['total_amount'] || 0,
+                abNegativeStock?.['total_amount'] || 0,
+                oPositiveStock?.['total_amount'] || 0,
+                oNegativeStock?.['total_amount'] || 0
+            ],
+
+            dataByYearAndMonth: {
+                '2019': { 
+                JAN: donationsByMonth['JAN'], 
+                FEV: donationsByMonth['FEV'], 
+                MAR: donationsByMonth['MAR'], 
+                ABR: donationsByMonth['ABR'], 
+                MAI: donationsByMonth['MAI'], 
+                JUN: donationsByMonth['JUN'], 
+                JUL: donationsByMonth['JUL'], 
+                AGO: donationsByMonth['AGO'], 
+                SET: donationsByMonth['SET'], 
+                OUT: donationsByMonth['OUT'], 
+                NOV: donationsByMonth['NOV'], 
+                DEZ: donationsByMonth['DEZ'] },
+            }
+        };
+
+        // Funcao para atualizar os dados no painel
+        function updateDashboard() {
+            updateProfileData();
+            updateTotalDonations();
+            updateStockLevels();
+            updateBloodTypeStock();
+        }
+
+        // Atualiza os dados do perfil de doadores
+        function updateProfileData() {
+            document.querySelector("#perfilDoadores .male").textContent = `${simulatedData.donorProfiles.male}% Homens`;
+            document.querySelector("#perfilDoadores .female").textContent = `${simulatedData.donorProfiles.female}% Mulheres`;
+        }
+
+        // Atualiza o total de doacoes
+        function updateTotalDonations() {
+            document.querySelector("#totalRecebido p").textContent = `${simulatedData.totalDonations} Litros`;
+        }
+
+        // Atualiza os níveis de estoque
+        function updateStockLevels() {
+            const current = simulatedData.stockLevels.current;
+            const target = simulatedData.stockLevels.target;
+            document.querySelector("#estoqueTotal .stock-level p:first-child").textContent = `Atual: ${current} Litros`;
+            document.querySelector("#estoqueTotal .stock-level p:last-child").textContent = `META: ${target} Litros`;
+        }
+
+        // Atualiza o gráfico de estoque por tipo sanguíneo
+        function updateBloodTypeStock() {
+            bloodTypeChart.data.datasets[0].data = simulatedData.bloodTypesStock;
+            bloodTypeChart.update();
+        }
+
+        // Configuracao do gráfico de doaçoes mensais
+        function createDonationsChartConfig(yearData) {
+            return {
+                type: "line",
+                data: {
+                    labels: Object.keys(yearData),
+                    datasets: [{
+                        label: "Doações de Sangue (L)",
+                        data: Object.values(yearData),
+                        borderColor: "#0275d8",
+                        backgroundColor: "rgba(2, 117, 216, 0.2)",
+                        fill: true
+                    }],
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { display: true },
+                    },
+                },
+            };
+        }
+
+        // Configuração do grafico de estoque por tipo sanguíneo
+        function createBloodTypeChartConfig() {
+            return {
+                type: "bar",
+                data: {
+                    labels: ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"],
+                    datasets: [{
+                        label: "Estoque (L)",
+                        data: simulatedData.bloodTypesStock,
+                        backgroundColor: [
+                            "#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0",
+                            "#9966FF", "#FF9F40", "#C9CBCF", "#36A2EB"
+                        ],
+                    }],
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { display: true },
+                    },
+                },
+            };
+        }
+
+        // Função para gerar graficos
+        function generateChart(ctx, config) {
+            return new Chart(ctx, config);
+        }
+
+        function addFilterListeners() {
+            
+            document.querySelectorAll(".year-selector button").forEach(button => {
+                button.addEventListener("click", () => {
+                    const selectedYear = button.textContent;
+                    updateDonationsChart(selectedYear); // Atualiza o grafico de doacoes para o ano selecionado
+                });
+            });
+
+            document.querySelectorAll(".months button").forEach(button => {
+                button.addEventListener("click", () => {
+                    alert(`Filtrando mês: ${button.textContent} do ano selecionado`);
+                });
+            });
+        }
+
+        // Atualiza o grafico de doacoes com o ano selecionado
+        function updateDonationsChart(year) {
+            const donationsChartConfig = createDonationsChartConfig(simulatedData.dataByYearAndMonth[year]);
+            donationsChart = generateChart(
+                document.getElementById("donationsChart").getContext("2d"),
+                donationsChartConfig
+            );
+        }
+
+        // Funcao para inicializar o painel
+        function initializeDashboard() {
+            // Gerar gráfico de doações
+            updateDonationsChart('2019');
+
+            // Gerar grafiico de estoque por tipo sanguíneo
+            bloodTypeChart = generateChart(
+                document.getElementById("bloodTypeChart").getContext("2d"),
+                createBloodTypeChartConfig()
+            );
+
+            // Atualizar os dados do painel
+            updateDashboard();
+
+            // Adicionar ouvintes de eventos para filtros
+            addFilterListeners();
+        }
+
+        // Chama a função de inicialização ao carregar a página
+        window.onload = initializeDashboard;
+        const moonIcon = document.getElementById("moonIcon");
+
+        moonIcon.addEventListener("click", () => {
+            document.body.classList.toggle("dark-mode");
+
+            // Alternar o símbolo da lua de crescente para cheia
+            const isDarkMode = document.body.classList.contains("dark-mode");
+
+            if (isDarkMode) {
+                moonIcon.innerHTML = "\u263C"; // Lua cheia
+            } else {
+                moonIcon.innerHTML = "\u263E"; // Lua crescente
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Melhores Lugares para Doar Sangue</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/stylelugares.css' %}"> 
+</head>
+<body>
+    <header class="cabecalho">
+        <div class="barra-navegacao">
+            <div class="logo">
+                <a href="{% url 'index' %}">
+                    <img src="{% static 'images/Logo GiveLife.png' %}" alt="Logo Give Life">
+                </a>
+            </div>
+            <nav class="links-navegacao">
+                <a href="{% url 'index' %}" class="link-navegacao link-home">Home</a>
+                <a href="{% url 'informacoes-doacao' %}" class="link-navegacao">Informações</a>
+                <a href="#" class="link-navegacao">Perfil</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="conteudo">
+        <h1>Melhores Lugares para Doar Sangue</h1>
+        <p class="subtitulo">Encontre os locais de doação de sangue mais próximos com base na sua localização.</p>
+
+        <section class="passo-a-passo" id="locais-doacao">
+            <div class="cartao-passo" id="carregando">
+                <h2>Carregando locais...</h2>
+                <p>Aguarde enquanto encontramos os melhores locais para doar sangue próximos de você.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="rodape">
+        <p>&copy; 2024 Give Life - Todos os direitos reservados</p>
+    </footer>
+
+    <script src="{% static 'js/localizacao.js' %}"></script>
+</body>
+</html>

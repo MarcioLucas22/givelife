@@ -1,0 +1,94 @@
+{% load static %}
+{% load bootstrap5 %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Give Life</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/stylescadastros.css' %}">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+          
+        </div>
+    </header>
+
+    <main>
+        <section class="registration-section">
+            <div class="container">
+                <div class="left-section">
+                    <img src="{% static 'images/Logo GiveLife.png' %}" alt="Logo Give Life" class="logo">
+                    <h2>Olá de Novo</h2>
+                    <p>Para Continuar Conectado Faça seu Login e Veja Seu Perfil</p>
+                    <a Href="{% url 'login' %}"class="btn-login">Login</a>
+                    <p>Quer ser um dos nossos parceiros?</p>
+
+                    <a Href="{% url 'cadastroIntu' %}"class="btn-partner">Seja Parceiro</a>
+                </div>
+                
+                <div class="registration-form">
+                    <h2>Crie sua Conta</h2>
+                    <form method="POST" action="{% url 'cadastro' %}">
+                        {% csrf_token %}
+                        <label for="name">Nome</label>
+                        <input type="text" id="name" name="name" placeholder="Digite seu nome" required>
+
+                        <label for="last_name">Sobrenome</label>
+                        <input type="text" id="last_name" name="last_name" placeholder="Digite seu sobrenome" required>
+
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
+
+                        <label for="phone">Telefone</label>
+                        <input type="text" id="phone" name="phone" placeholder="Digite seu telefone" required>
+
+                        <div class="mb-3">
+                            <label for="blood_type" class="form-label">Tipo Sanguíneo</label>
+                            <select id="blood_type" name="blood_type" class="form-select" required>
+                                <option value="" disabled selected>Selecione seu tipo sanguíneo</option>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="sex" class="form-label">Sexo</label>
+                            <select id="sex" name="sex" class="form-select" required>
+                                <option value="" disabled selected>Selecione seu sexo</option>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Feminino">Feminino</option>
+                            </select>
+                        </div>
+
+
+                        <label for="password">Senha</label>
+                        <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
+
+                        <label for="confirm-password">Confirme a Senha</label>
+                        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirme sua senha" required>
+
+                        <button type="submit" class="btn-primary">Cadastrar</button>
+                        <br>
+                        <p>Já tem uma conta? <a href="{% url 'login' %}">Entre aqui</a></p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Give Life - Todos os direitos reservados</p>
+    </footer>
+    <script src="{% static 'js/cadastro.js' %}"></script>
+</body>
+</html>

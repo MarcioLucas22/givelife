@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Instituições - Give Life</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/stylesinstituicao.css' %}">
+</head>
+<body>
+    <main>
+        <section class="registration-section">
+            <div class="container">
+                <!-- Coluna Esquerda: Formulário de Cadastro -->
+                <div class="form-section">
+                    <h2>Informe Seus Dados</h2>
+                    <p>Juntos podemos alcançar muito mais</p>
+                    <form method="POST" action="{% url 'cadastroIntu' %}">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <input type="text" id="name" name="name" placeholder="Nome da Instituição" required>
+                            <input type="email" id="email" name="email" placeholder="E-mail" required>
+                        </div>
+                        <div class="form-row">
+                            <input type="text" id="phone" name="phone" placeholder="Telefone" required>
+                            <input type="text" id="address" name="address" placeholder="Endereço" required>
+                        </div>
+                        <div class="form-row">
+                            <input type="text" id="cnpj" name="cnpj" placeholder="CNPJ" required>
+                        </div>
+                        <div class="form-row">
+                            <input type="password" id="password" name="password" placeholder="Crie uma Senha" required>
+                            <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirme a Senha" required>
+                        </div>
+                        <button type="submit" class="btn-primary">Cadastrar</button>
+                    </form>
+                </div>
+
+                <!-- Coluna Direita: Boas-vindas -->
+                <div class="welcome-section">
+                    <img src="{% static 'images/Logo GiveLife.png' %}" alt="Logo Give Life" class="logo">
+                    <h2>Olá</h2>
+                    <p>Para ser um dos nossos, antes precisamos saber mais sobre você</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+            <p>&copy; 2024 Give Life - Todos os direitos reservados</p>
+    </footer>
+    <script src="{% static 'js/cadastroIntu.js' %}"></script>
+</body>
+</body>
+</html>

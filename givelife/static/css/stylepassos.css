@@ -1,0 +1,144 @@
+/* Estilo para o conteúdo principal */
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa; 
+}
+.conteudo {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.conteudo h1 {
+    font-size: 28px;
+    color: #004f4f;
+    margin-bottom: 10px;
+}
+
+.subtitulo {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* Estilo para cada passo do processo */
+.passo-a-passo {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+.cartao-passo {
+    background-color: #f1f1f1;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
+}
+
+.cartao-passo h2 {
+    font-size: 20px;
+    color: #004f4f;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.cartao-passo p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+    text-align: center; 
+}
+
+/* Rodapé */
+.rodape {
+    background-color: #004f4f;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: auto;
+}
+/* Estilos para o Cabeçalho e Barra de Navegação */
+.cabecalho {
+    background-color: #004f4f;
+    padding: 10px 0;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.barra-navegacao {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Estilos para a Logo */
+.logo img {
+    width: 60px;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+    transform: scale(1.1);
+}
+
+/* Estilos para Links de Navegação */
+.links-navegacao {
+    display: flex;
+    gap: 20px;
+}
+
+.link-navegacao {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 8px;
+    background-color: transparent;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.link-navegacao:hover {
+    background-color: rgba(255, 255, 255, 0.2); 
+    color: #fffffe; 
+
+.link-home {
+    background-color: #d32f2f;
+    color: #fff;
+}
+
+.link-home:hover {
+    background-color: #ff3b30; 
+}
+
+/* Responsividade para o Menu de Navegação */
+@media (max-width: 768px) {
+    .barra-navegacao {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .links-navegacao {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .link-navegacao {
+        width: 100%;
+        text-align: center;
+    }
+}
+}

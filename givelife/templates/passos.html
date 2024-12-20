@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passo a Passo para Doar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/stylepassos.css' %}">
+</head>
+
+<header class="cabecalho">
+    <div class="barra-navegacao">
+        <div class="logo">
+            <a href="{% url 'index' %}">
+                <img src="{% static 'images/Logo GiveLife.png' %}" alt="Logo Give Life">
+            </a>
+        </div>
+        <nav class="links-navegacao">
+            <a href="{% url 'index' %}" class="link-navegacao link-home">Home</a>
+            <a href="{% url 'informacoes-doacao' %}" class="link-navegacao">Informações</a>
+        </nav>
+    </div>
+</header>
+
+    
+    <main class="conteudo">
+        <h1>Passo a Passo para Doar</h1>
+        <p class="subtitulo">Saiba o que esperar durante o processo de doação de sangue.</p>
+
+        <section class="passo-a-passo">
+            <div class="cartao-passo">
+                <h2>1. Preenchimento de Dados</h2>
+                <p>O primeiro passo é preencher um formulário com informações básicas sobre sua saúde e histórico médico. Essas informações ajudam a garantir que a doação seja segura tanto para você quanto para o receptor.</p>
+            </div>
+
+            <div class="cartao-passo">
+                <h2>2. Escolha do Local e Horário</h2>
+                <p>Após preencher seus dados, você poderá escolher o local de coleta mais próximo e o horário que seja mais conveniente. Verifique as unidades disponíveis e faça sua escolha.</p>
+            </div>
+
+            <div class="cartao-passo">
+                <h2>3. Comparecimento no Dia Agendado</h2>
+                <p>No dia e horário escolhidos, compareça ao local de coleta com um documento de identidade. É importante estar bem alimentado, hidratado e ter descansado adequadamente.</p>
+            </div>
+
+            <div class="cartao-passo">
+                <h2>4. Triagem e Avaliação</h2>
+                <p>Ao chegar, você passará por uma breve avaliação feita por um profissional de saúde, para confirmar que está apto a doar. Este é um processo rápido que garante a segurança de todos.</p>
+            </div>
+
+            <div class="cartao-passo">
+                <h2>5. Coleta de Sangue</h2>
+                <p>A doação é um processo simples que dura cerca de 10 minutos. Todo o material utilizado é estéril e descartável, garantindo total segurança para você.</p>
+            </div>
+
+            <div class="cartao-passo">
+                <h2>6. Descanso e Lanche</h2>
+                <p>Após a doação, você será orientado a descansar por alguns minutos e receberá um lanche para repor suas energias. Esse cuidado ajuda a garantir seu bem-estar após o procedimento.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="rodape">
+        <p>&copy; 2024 Give Life - Todos os direitos reservados</p>
+    </footer>
+</body>
+</html>
