@@ -175,14 +175,14 @@ class InformacoesDoacaoView(TemplateView):
 
 
 class DoadorView(TemplateView):
-    API_KEY = settings.GOOGLE_MAPS_API_KEY
+    # API_KEY = settings.GOOGLE_MAPS_API_KEY
     
     def get(self, request):
-        # print(get_coordinates('Rua plêiades 451, Santa lúcia', self.API_KEY))
-        context = {
-            'GOOGLE_MAPS_API_KEY': self.API_KEY,
-        }
-        return render(request, 'doador.html', context)
+        # # print(get_coordinates('Rua plêiades 451, Santa lúcia', self.API_KEY))
+        # context = {
+        #     'GOOGLE_MAPS_API_KEY': self.API_KEY,
+        # }
+        return render(request, 'doador.html') #context
     
 
 

@@ -11,8 +11,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 dotenv.load_dotenv()
-SECRET_KEY = os.environ['SECRET_KEY']
-GOOGLE_MAPS_API_KEY = os.environ['GOOGLE_MAPS_API_KEY']
+SECRET_KEY = 'django-insecure-_1x-%#3enx&!^qr6dpa0s3&=e4d$c&axtoq)qh4t7+vuqh-z*e'
+# GOOGLE_MAPS_API_KEY = os.environ['GOOGLE_MAPS_API_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -30,7 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'givelife',
-    'bootstrap5',
+    'bootstrap4',
 ]
 
 MIDDLEWARE = [
